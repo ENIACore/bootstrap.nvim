@@ -1,4 +1,4 @@
-*kb-lsp*	LSP Keymaps (nvim-lsp, jdtls)
+*kb-lsp*	LSP Keymaps (nvim-lsp + jdtls)
 
 ================================================================================
 CONTENTS                                                      *kb-lsp-contents*
@@ -14,25 +14,39 @@ CONTENTS                                                      *kb-lsp-contents*
 
 `gd`                                                          *lsp-definition*
     Jump to the definition of the symbol under the cursor. Use when you want
-    to see where a function, variable, or class is declared.
+    to see where a function, variable, or class is declared. (Your remap)
 
-`gD`                                                     *lsp-declaration*
-    Jump to the declaration (as opposed to definition). Rarely differs from
-    `gd` in most languages but useful in C/C++ header situations.
+`grr`                                                        *lsp-references*
+    (Neovim default) Show all references to the symbol under the cursor in
+    the quickfix list. Same as `<leader>vrr`. Use to find every place a
+    symbol is used across the project.
 
-`gr`                                                          *lsp-references*
-    (Default) Show all references to the symbol under the cursor in the
-    quickfix list. Use to find every place a symbol is used. See also
-    |lsp-vrr| for the explicit mapping.
+`gri`                                                    *lsp-implementation*
+    (Neovim default) Jump to the implementation of an interface or abstract
+    method. Use in Java when you're on an interface method and want to see
+    the concrete class that implements it.
 
-`gi`                                                      *lsp-implementation*
-    Jump to the implementation of an interface or abstract method. Use in
-    Java/TypeScript when you're on an interface method and want to see the
-    concrete class that implements it.
+`grt`                                                  *lsp-type-definition*
+    (Neovim default) Jump to the type definition of the symbol under the
+    cursor. Use when you want to see the type a variable is declared as,
+    rather than where the variable itself is defined.
 
-`<leader>vrr`                                                      *lsp-vrr*
-    Show all references to the symbol under the cursor. Use to find every
-    place a function or variable is called or used across the project.
+`grn`                                                          *lsp-grn*
+    (Neovim default) Rename the symbol under the cursor. Same as
+    `<leader>vrn`.
+
+`gra`                                                          *lsp-gra*
+    (Neovim default) Open code actions at the cursor. Same as
+    `<leader>vca`.
+
+`grx`                                                       *lsp-codelens*
+    (Neovim default) Run the codelens action under the cursor. Codelenses
+    are inline hints some LSP servers show (e.g. "5 references", "Run test")
+    — `grx` executes the action for the one under the cursor.
+
+`<leader>vrr`                                                    *lsp-vrr*
+    Show all references to the symbol under the cursor. Same as `grr` but
+    your explicit remap.
 
 `<leader>vws`                                           *lsp-workspace-symbol*
     Fuzzy search for any symbol (function, class, variable) across the whole

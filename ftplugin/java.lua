@@ -73,6 +73,10 @@ local config = {
                         path = "/opt/homebrew/Cellar/openjdk@11/11.0.31/libexec/openjdk.jdk/Contents/Home",
                     },
                     {
+                        name = "JavaSE-17",
+                        path = "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home",
+                    },
+                    {
                         name = "JavaSE-26",
                         path = "/opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home",
                         default = true,  -- used when no project-level version is detected

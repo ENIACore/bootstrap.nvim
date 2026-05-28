@@ -130,9 +130,11 @@ kb-telescope-files	kb-telescope.txt	/*kb-telescope-files*
 kb-telescope-grep	kb-telescope.txt	/*kb-telescope-grep*
 kb-telescope-picker	kb-telescope.txt	/*kb-telescope-picker*
 lsp-code-action	kb-lsp.txt	/*lsp-code-action*
-lsp-declaration	kb-lsp.txt	/*lsp-declaration*
+lsp-codelens	kb-lsp.txt	/*lsp-codelens*
 lsp-definition	kb-lsp.txt	/*lsp-definition*
 lsp-format	kb-lsp.txt	/*lsp-format*
+lsp-gra	kb-lsp.txt	/*lsp-gra*
+lsp-grn	kb-lsp.txt	/*lsp-grn*
 lsp-hover	kb-lsp.txt	/*lsp-hover*
 lsp-implementation	kb-lsp.txt	/*lsp-implementation*
 lsp-java-extract-constant	kb-lsp.txt	/*lsp-java-extract-constant*
@@ -147,6 +149,7 @@ lsp-prev-diagnostic	kb-lsp.txt	/*lsp-prev-diagnostic*
 lsp-references	kb-lsp.txt	/*lsp-references*
 lsp-rename	kb-lsp.txt	/*lsp-rename*
 lsp-signature-help	kb-lsp.txt	/*lsp-signature-help*
+lsp-type-definition	kb-lsp.txt	/*lsp-type-definition*
 lsp-vrr	kb-lsp.txt	/*lsp-vrr*
 lsp-workspace-symbol	kb-lsp.txt	/*lsp-workspace-symbol*
 mason-close	kb-mason.txt	/*mason-close*
