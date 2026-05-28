@@ -1,0 +1,96 @@
+*kb-mason*	Mason (LSP / DAP / Linter installer)
+
+================================================================================
+CONTENTS                                                   *kb-mason-contents*
+
+  1. Concepts .................. |kb-mason-concepts|
+  2. Opening Mason ............. |kb-mason-open|
+  3. Inside the UI ............. |kb-mason-ui|
+  4. Commands .................. |kb-mason-commands|
+
+================================================================================
+1. CONCEPTS                                              *kb-mason-concepts*
+
+    WHAT MASON IS ~
+    Mason is a package manager inside Neovim. It downloads and manages
+    external tools — LSP servers, DAP adapters, linters, and formatters —
+    so you don't need to install them manually via your system package
+    manager. Everything Mason installs lives in one directory inside your
+    Neovim data folder and is managed entirely from within the editor.
+
+    WHAT MASON IS NOT ~
+    Mason installs the tools but doesn't configure them. Wiring an LSP
+    server up to Neovim's LSP client (so it actually runs on your files)
+    is the job of `lspconfig` or `mason-lspconfig`. Mason just puts the
+    binary in the right place.
+
+    MASON'S INSTALL PATH ~
+    Tools are installed to:
+        `~/.local/share/nvim/mason/bin/`
+    Neovim adds this to PATH automatically so LSP servers and DAP adapters
+    are found without any extra config.
+
+================================================================================
+2. OPENING MASON                                          *kb-mason-open*
+
+`:Mason`                                                  *mason-open*
+    Open the Mason UI window. Your main interface for browsing, installing,
+    and managing tools.
+
+`:MasonUpdate`                                            *mason-update*
+    Update all installed packages to their latest versions. Run periodically
+    to keep LSP servers and tools up to date.
+
+================================================================================
+3. INSIDE THE UI                                           *kb-mason-ui*
+
+    The Mason window lists all available packages grouped by type (LSP
+    servers, DAP adapters, linters, formatters). Installed packages are
+    shown at the top with a checkmark.
+
+`i`                                                       *mason-install*
+    Install the package under the cursor. Mason downloads and sets it up
+    in the background — a spinner shows progress.
+
+`u`                                                       *mason-upgrade*
+    Upgrade the package under the cursor to the latest version.
+
+`U`                                                       *mason-upgrade-all*
+    Upgrade all installed packages at once.
+
+`X`                                                       *mason-uninstall*
+    Uninstall the package under the cursor.
+
+`<CR>`                                                    *mason-expand*
+    Expand the package under the cursor to show details — version,
+    homepage, and what languages/tools it supports.
+
+`/`                                                       *mason-filter*
+    Filter the package list by typing a search term. Use to quickly find
+    a server by name, e.g. "jdtls" or "pyright".
+
+`g?`                                                      *mason-help*
+    Show all available keybindings for the Mason window.
+
+`q`                                                       *mason-close*
+    Close the Mason window.
+
+================================================================================
+4. COMMANDS                                              *kb-mason-commands*
+
+`:MasonInstall <pkg>`                                     *mason-cmd-install*
+    Install a specific package by name without opening the UI, e.g.
+    `:MasonInstall jdtls`. Useful for scripting or quick installs.
+
+`:MasonUninstall <pkg>`                                   *mason-cmd-uninstall*
+    Uninstall a specific package by name.
+
+`:MasonUninstallAll`                                      *mason-cmd-uninstall-all*
+    Uninstall every Mason-managed package. Use with caution.
+
+`:MasonLog`                                               *mason-log*
+    Open Mason's log file. Use when an install fails and you need to see
+    the error output to diagnose what went wrong.
+
+================================================================================
+vim:ft=help:tw=78:

@@ -1,0 +1,82 @@
+*kb-cmp*	Completion Keymaps (nvim-cmp + vsnip)
+
+================================================================================
+CONTENTS                                                      *kb-cmp-contents*
+
+  1. Insert Mode ............... |kb-cmp-insert|
+  2. Snippet Navigation ........ |kb-cmp-snippets|
+  3. Cmdline Mode .............. |kb-cmp-cmdline|
+
+================================================================================
+1. INSERT MODE                                               *kb-cmp-insert*
+
+    These mappings are active when the completion menu is open or can be
+    triggered while typing in insert mode.
+
+`<C-Space>`                                                  *cmp-trigger*
+    Manually trigger the completion menu. Use when autocomplete didn't pop
+    up automatically and you want to see suggestions at the cursor.
+
+`<CR>`                                                       *cmp-confirm*
+    Confirm and insert the currently selected completion item. Will only
+    confirm if you have explicitly selected an item (highlighted with
+    `<C-n>`/`<C-p>`) — pressing Enter on an unselected menu does nothing,
+    so your normal Enter key is safe.
+
+`<C-d>`                                                       *cmp-abort*
+    Dismiss the completion menu and go back to typing normally. Use when
+    the suggestions are not what you want and are getting in the way.
+
+`<C-b>`                                                   *cmp-scroll-up*
+    Scroll the documentation preview window up by 4 lines. Use when the
+    docs panel is open and you want to read further up.
+
+`<C-f>`                                                  *cmp-scroll-down*
+    Scroll the documentation preview window down by 4 lines. Use when the
+    docs panel is open and you want to read further down.
+
+`<C-n>`                                                  *cmp-next-item*
+    (Default) Select the next item in the completion menu. Use to move
+    down through suggestions.
+
+`<C-p>`                                                  *cmp-prev-item*
+    (Default) Select the previous item in the completion menu. Use to move
+    back up through suggestions.
+
+================================================================================
+2. SNIPPET NAVIGATION                                       *kb-cmp-snippets*
+
+    These are vsnip defaults active while a snippet is expanded.
+
+`<Tab>`                                                  *cmp-snippet-next*
+    (Default vsnip) Jump to the next placeholder in an expanded snippet.
+    Use after inserting a snippet to fill in each argument in order.
+
+`<S-Tab>`                                                *cmp-snippet-prev*
+    (Default vsnip) Jump to the previous placeholder in an expanded snippet.
+    Use to go back and correct an earlier argument.
+
+    NOTE: Tab/S-Tab only act as snippet jumps when inside an active snippet
+    expansion. Outside of one they behave normally.
+
+================================================================================
+3. CMDLINE MODE                                             *kb-cmp-cmdline*
+
+    Completion also activates in Vim's command line (`:`, `/`, `?`).
+    The standard cmdline navigation keys apply:
+
+`<Tab>`                                               *cmp-cmdline-next*
+    Select the next completion suggestion in the cmdline menu.
+
+`<S-Tab>`                                             *cmp-cmdline-prev*
+    Select the previous completion suggestion in the cmdline menu.
+
+`<C-n>` / `<C-p>`                                  *cmp-cmdline-nav*
+    Alternative next/previous navigation in the cmdline menu.
+
+    Sources by context:
+    - `/` and `?` searches  →  completions drawn from current buffer text
+    - `:` commands          →  completions drawn from file paths and Ex commands
+
+================================================================================
+vim:ft=help:tw=78:

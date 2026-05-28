@@ -1,0 +1,102 @@
+*kb-telescope*	Telescope Keymaps (fuzzy finder + previewer)
+
+================================================================================
+CONTENTS                                                *kb-telescope-contents*
+
+  1. Concepts .................. |kb-telescope-concepts|
+  2. Finding Files ............. |kb-telescope-files|
+  3. Searching Text ............ |kb-telescope-grep|
+  4. Inside the Picker ......... |kb-telescope-picker|
+
+================================================================================
+1. CONCEPTS                                            *kb-telescope-concepts*
+
+    FUZZY FINDER ~
+    A fuzzy finder lets you type a rough approximation of what you're looking
+    for and it finds matches even if your query isn't exact. For example,
+    typing "uscon" can match "UserController.java". You don't need to know
+    the exact filename or path.
+
+    THE PICKER ~
+    The Telescope popup window. It has three panes:
+    - Prompt  — where you type your query (bottom)
+    - Results — the list of matches (left)
+    - Preview — a read-only preview of the selected file (right)
+
+    QUICKFIX LIST ~
+    A global Vim list of file locations (file + line number). Think of it as
+    a to-do list of places in your code to visit. Once populated you navigate
+    it with `]q` (next) and `[q` (prev), or open it with `:copen`. It is
+    global — shared across all windows. Useful after a grep when you want to
+    work through every match one by one.
+
+    LOCATION LIST ~
+    Same idea as the quickfix list but window-local — each split/window has
+    its own. Navigate with `]l` / `[l`, open with `:lopen`. Useful when you
+    want separate result sets in different windows at the same time.
+
+================================================================================
+2. FINDING FILES                                        *kb-telescope-files*
+
+`<leader>pf`                                              *telescope-find-files*
+    Fuzzy find any file in the current working directory (including
+    untracked files). Use when you know part of a filename and want to
+    open it fast.
+
+`<C-p>`                                                  *telescope-git-files*
+    Fuzzy find files tracked by Git only. Use in a repo when you want to
+    limit results to committed/staged files and ignore build artifacts or
+    anything in .gitignore.
+
+================================================================================
+3. SEARCHING TEXT                                         *kb-telescope-grep*
+
+`<leader>ps`                                              *telescope-live-grep*
+    Live grep across all files in the project — results update as you type.
+    Use when you're looking for a specific string, function call, or pattern
+    and don't know which file it's in.
+
+    NOTE: Requires `ripgrep` to be installed (`rg` on PATH).
+
+================================================================================
+4. INSIDE THE PICKER                                    *kb-telescope-picker*
+
+    These are the default Telescope bindings active inside any picker window.
+
+`<C-n>` / `<C-p>`                                      *telescope-next-prev*
+    Move down / up through results. Arrows also work.
+
+`<C-j>` / `<C-k>`                                      *telescope-scroll-preview*
+    Scroll the preview window down / up without leaving the prompt.
+
+`<CR>`                                                  *telescope-open*
+    Open the selected file in the current window.
+
+`<C-x>`                                                 *telescope-split*
+    Open the selected file in a horizontal split.
+
+`<C-v>`                                                 *telescope-vsplit*
+    Open the selected file in a vertical split.
+
+`<C-t>`                                                 *telescope-tab*
+    Open the selected file in a new tab.
+
+`<C-u>` / `<C-d>`                                      *telescope-scroll-results*
+    Scroll the results list up / down by half a page.
+
+`<C-q>`                                                 *telescope-quickfix*
+    Send all current results to the quickfix list and close the picker. Use
+    when you want to work through a grep result set with `]q` / `[q`.
+
+`<M-q>`                                                 *telescope-loc-list*
+    Send selected results to the location list (window-local quickfix).
+
+`<Esc>` / `<C-c>`                                       *telescope-close*
+    Close the picker and return to the editor.
+
+    NOTE: `<C-t>` inside Telescope conflicts with Harpoon's global `<C-t>`
+    binding. Telescope picker mappings are buffer-local so Telescope wins
+    inside the picker, but be aware if behaviour feels off. See |kb-harpoon|.
+
+================================================================================
+vim:ft=help:tw=78:

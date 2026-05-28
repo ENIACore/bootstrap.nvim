@@ -1,0 +1,125 @@
+*kb-debugging*	Debugging Keymaps (nvim-dap, nvim-dap-ui, jdtls)
+
+================================================================================
+CONTENTS                                                  *kb-debugging-contents*
+
+  1. Java / jdtls .............. |kb-debugging-java|
+  2. Core Controls ............. |kb-debugging-core|
+  3. Breakpoint Management ..... |kb-debugging-breakpoints|
+  4. UI ........................ |kb-debugging-ui|
+  5. Floating Widgets .......... |kb-debugging-widgets|
+  6. REPL ...................... |kb-debugging-repl|
+
+================================================================================
+1. JAVA / JDTLS                                             *kb-debugging-java*
+
+`<leader>df`                                                    *dap-test-class*
+    Runs all tests in the current Java class via jdtls. Use when you want to
+    run the full test suite for the file you're editing.
+
+`<leader>dn`                                              *dap-test-nearest-method*
+    Runs only the test method nearest to your cursor via jdtls. Use when
+    iterating on a single test and don't want to run the whole class.
+
+    NOTE: `<leader>df` is also mapped to DAP Frames widget (see
+    |kb-debugging-widgets|). The jdtls mapping takes effect inside Java
+    buffers where jdtls opts are applied.
+
+================================================================================
+2. CORE CONTROLS                                            *kb-debugging-core*
+
+`<leader>dc`                                                    *dap-continue*
+    Start the debugger or continue execution after hitting a breakpoint. Use
+    this to kick off a debug session and to resume after pausing.
+
+`<leader>di`                                                    *dap-step-into*
+    Step into the function call on the current line, following execution
+    inside it. Use when you want to inspect what a function does internally.
+
+`<leader>do`                                                    *dap-step-over*
+    Execute the current line and move to the next, without diving into any
+    called functions. Use when you trust the current call and just want to
+    advance.
+
+`<leader>dO`                                                    *dap-step-out*
+    Finish executing the current function and return to the caller. Use when
+    you've seen enough inside a function and want to pop back up the stack.
+
+`<leader>dr`                                                *dap-run-to-cursor*
+    Continue execution until the line your cursor is on, then pause. Use as
+    a quick one-shot breakpoint to jump to a specific point without setting
+    a permanent breakpoint.
+
+`<leader>dR`                                                    *dap-restart*
+    Restart the current debug session from the beginning. Use when you want
+    to rerun without re-launching from scratch.
+
+`<leader>dt`                                                   *dap-terminate*
+    Stop the debug session entirely. Use when you're done debugging or the
+    session is in a bad state.
+
+`<leader>dp`                                                      *dap-pause*
+    Pause a running program mid-execution. Use when the program is running
+    and you want to inspect state without having set a breakpoint ahead of
+    time.
+
+================================================================================
+3. BREAKPOINT MANAGEMENT                               *kb-debugging-breakpoints*
+
+`<leader>db`                                             *dap-toggle-breakpoint*
+    Toggle a standard breakpoint on the current line. Use to mark lines
+    where you want execution to pause.
+
+`<leader>dB`                                         *dap-conditional-breakpoint*
+    Set a breakpoint that only triggers when a condition you type is true.
+    Use when you only care about a specific state, e.g. when a variable
+    hits a certain value.
+
+`<leader>dl`                                                  *dap-log-point*
+    Set a log point that prints a message to the debug console without
+    pausing execution. Use when you want printf-style tracing without
+    modifying source code.
+
+`<leader>dx`                                          *dap-clear-all-breakpoints*
+    Remove every breakpoint in the session at once. Use when you want a
+    clean slate before setting up new breakpoints.
+
+================================================================================
+4. UI                                                        *kb-debugging-ui*
+
+`<leader>du`                                                  *dap-toggle-ui*
+    Toggle the full DAP UI (variables, call stack, breakpoints, console
+    panels). Use to show or hide the debug layout in one shot.
+
+`<leader>dq`                                                 *dap-close-ui*
+    Close all DAP UI windows without ending the session. Use when you want
+    to reclaim screen space but keep the session alive.
+
+================================================================================
+5. FLOATING WIDGETS                                       *kb-debugging-widgets*
+    All floating widgets are closed with `q`.
+
+`<leader>dh`                                                  *dap-hover-value*
+    Show the value of the variable or expression under the cursor in a
+    floating popup. Use during a paused session to quickly inspect a value
+    without opening the full UI.
+
+`<leader>dS`                                                *dap-scopes-float*
+    Open a centered float showing all scopes (local variables, arguments,
+    globals) for the current stack frame. Use to get a snapshot of what's
+    in scope at the current pause point.
+
+`<leader>df`                                                *dap-frames-float*
+    Open a centered float showing the full call stack (frames). Use to see
+    how you got to the current point and navigate between frames.
+
+================================================================================
+6. REPL                                                      *kb-debugging-repl*
+
+`<leader>d:`                                                  *dap-toggle-repl*
+    Toggle the DAP REPL (interactive evaluation console). Use to evaluate
+    expressions, inspect variables, or run arbitrary code in the context of
+    the paused program.
+
+================================================================================
+vim:ft=help:tw=78:

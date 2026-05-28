@@ -1,0 +1,195 @@
+*kb-remaps*	Personal Remaps & Useful Defaults
+
+================================================================================
+CONTENTS                                                   *kb-remaps-contents*
+
+  1. Concepts .................. |kb-remaps-concepts|
+  2. Diagnostics ............... |kb-remaps-diagnostics|
+  3. File & Window ............. |kb-remaps-filewindow|
+  4. Editing ................... |kb-remaps-editing|
+  5. Misc ...................... |kb-remaps-misc|
+  6. Default Motions ........... |kb-remaps-defaults|
+  7. Window Navigation ......... |kb-remaps-windows|
+  8. Help Navigation ........... |kb-remaps-help|
+
+================================================================================
+1. CONCEPTS                                              *kb-remaps-concepts*
+
+    LEADER KEY ~
+    Your leader is Space (`<leader> = " "`). It acts as a namespace prefix
+    for custom mappings so they don't conflict with Vim's built-in keys.
+
+    DIAGNOSTICS ~
+    Errors, warnings, and hints placed on your code by the LSP. They show
+    as virtual text at the end of the line (signs/gutter icons are disabled
+    in your config). See |kb-remaps-diagnostics|.
+
+    REGISTERS ~
+    Vim's internal clipboards. `"` followed by a letter names a register.
+    `"+` is the system clipboard register — yanking to it makes text
+    available to paste outside of Neovim.
+
+    RELATIVE LINE NUMBERS ~
+    Your config shows both absolute (the real line number) and relative
+    (distance from your cursor) numbers simultaneously. Relative numbers
+    make vertical motions like `5j` or `10dd` easy to eyeball.
+
+    UNDOTREE ~
+    Vim's undo history is a tree, not a linear stack — if you undo and then
+    make a new change, the old "redo" branch is preserved, not lost.
+    Undotree lets you visualise and navigate this. Your undo history is also
+    persisted to disk (`undofile = true`) so it survives closing Neovim.
+
+================================================================================
+2. DIAGNOSTICS                                         *kb-remaps-diagnostics*
+
+`<leader>d`                                            *remap-diagnostic-float*
+    Open the diagnostic message at the current line in a floating window.
+    Use when the virtual text is truncated and you need to read the full
+    error or warning.
+
+`]d`                                                    *remap-diagnostic-next*
+    Jump to the next diagnostic in the file and show it in a float. Use to
+    cycle forward through errors and warnings.
+
+`[d`                                                    *remap-diagnostic-prev*
+    Jump to the previous diagnostic in the file and show it in a float.
+
+================================================================================
+3. FILE & WINDOW                                       *kb-remaps-filewindow*
+
+`<leader>pv`                                               *remap-explorer*
+    Open netrw (Vim's built-in file explorer) in the current directory.
+    Use to browse files, create, rename, or delete them without leaving
+    Neovim.
+
+`<leader>s`                                                *remap-vsplit*
+    Open a vertical split of the current buffer. Use when you want to view
+    two files or two parts of the same file side by side.
+
+================================================================================
+4. EDITING                                               *kb-remaps-editing*
+
+`J`  (visual)                                           *remap-move-down*
+    Move the selected lines down by one line, re-indenting automatically.
+    Use to reorder blocks of code without cutting and pasting.
+
+`K`  (visual)                                           *remap-move-up*
+    Move the selected lines up by one line, re-indenting automatically.
+
+    NOTE: `J` in normal mode is a built-in that joins the current line with
+    the line below — this remap only applies in visual mode.
+
+`<leader>y`  (visual)                                   *remap-yank-clipboard*
+    Yank the selected text to the system clipboard. Use when you want to
+    paste something outside of Neovim (browser, IDE, terminal, etc.).
+    Regular `y` still yanks to Vim's internal register only.
+
+================================================================================
+5. MISC                                                     *kb-remaps-misc*
+
+`<leader>u`                                               *remap-undotree*
+    Toggle the Undotree panel. Use when you've made a mistake that normal
+    `u` can't easily recover — you can navigate back to any historical state
+    of the file, even across sessions (undo history is saved to disk).
+
+`<leader>m`                                               *remap-messages*
+    Open Neovim's `:messages` log in a new scratch buffer. Use when an
+    error or info message flashed by too fast to read — the scratch buffer
+    is scrollable and you can yank from it.
+
+================================================================================
+6. DEFAULT MOTIONS                                       *kb-remaps-defaults*
+
+    Useful built-in motions worth remembering.
+
+`gg` / `G`                                              *remap-top-bottom*
+    Jump to the top / bottom of the file.
+
+`{` / `}`                                               *remap-paragraphs*
+    Jump to the previous / next empty line (paragraph boundary). Fast for
+    skipping between blocks of code.
+
+`%`                                                     *remap-matchpair*
+    Jump to the matching bracket, paren, or brace. Use to check that a
+    block is closed correctly.
+
+`*` / `#`                                               *remap-word-search*
+    Search forward / backward for the exact word under the cursor. Faster
+    than typing `/word` manually.
+
+`ciw` / `diw` / `yiw`                                  *remap-inner-word*
+    Change / delete / yank the word under the cursor without needing to be
+    at the start of it. `i` means "inner" (excludes surrounding whitespace).
+
+`ci(` / `ci"` / `ci{`                                  *remap-inner-object*
+    Change the contents inside parens, quotes, or braces. Works for `d`
+    and `y` too. e.g. `di"` deletes everything inside the nearest quotes.
+
+`zz` / `zt` / `zb`                                     *remap-scroll-cursor*
+    Re-centre the screen on the cursor (middle / top / bottom). Use after
+    jumping to a location to get context around it.
+
+`<C-d>` / `<C-u>`                                      *remap-half-page*
+    Scroll down / up half a page, keeping the cursor centred. Good for
+    reading through a file faster than line-by-line.
+
+`gf`                                                    *remap-goto-file*
+    Open the file whose path is under the cursor. Useful when you see an
+    import path or a filename in a config and want to jump straight to it.
+
+`ga`                                                    *remap-ascii*
+    Show the ASCII, hex, and Unicode value of the character under the
+    cursor. Handy for debugging invisible or unexpected characters.
+
+================================================================================
+7. WINDOW NAVIGATION                                     *kb-remaps-windows*
+
+`<C-w>h` / `<C-w>l`                                    *remap-win-left-right*
+    Move focus to the window on the left / right.
+
+`<C-w>j` / `<C-w>k`                                    *remap-win-down-up*
+    Move focus to the window below / above.
+
+`<C-w>o`                                                *remap-win-only*
+    Close all windows except the current one. Use to quickly get back to
+    a single buffer view.
+
+`<C-w>=`                                                *remap-win-equal*
+    Equalise the size of all open windows. Use after resizing splits to
+    reset them.
+
+`<C-w>r`                                                *remap-win-rotate*
+    Rotate windows clockwise. Use to swap the position of two splits.
+
+`<C-w>v` / `<C-w>s`                                    *remap-win-split*
+    Open a vertical / horizontal split of the current buffer. Same as
+    `<leader>s` (vsplit) but built-in and works for horizontal too.
+
+================================================================================
+8. HELP NAVIGATION                                        *kb-remaps-help*
+
+    These work inside any `ft=help` buffer (i.e. your kb-* docs and Neovim
+    help pages).
+
+`<C-]>`                                                 *remap-help-jump*
+    Jump to the tag under the cursor. Use on any `|link|` in a help file
+    to follow it, or on any `*tag*` to jump to its definition.
+
+`<C-o>`                                                 *remap-help-back*
+    Jump back to where you came from (jumplist). Use after `<C-]>` to
+    return to where you were. Stackable — press multiple times to go
+    further back.
+
+    NOTE: `<C-t>` is the built-in help-back key but is stolen by Harpoon.
+    Use `<C-o>` instead. See |kb-harpoon|.
+
+`<C-i>`                                                 *remap-help-forward*
+    Jump forward in the jumplist (opposite of `<C-o>`).
+
+`gO`                                                    *remap-help-toc*
+    Open a table of contents float for the current help file (Neovim only).
+    Use to get an overview of sections and jump to one quickly.
+
+================================================================================
+vim:ft=help:tw=78:

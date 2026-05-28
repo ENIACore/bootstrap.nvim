@@ -1,0 +1,78 @@
+*kb-index*	My Neovim Knowledge Base
+
+    A personal reference for keymaps, plugins, and workflow.
+    Use `<C-]>` on any |link| to jump to that doc.
+    Use `<C-o>` to jump back here.
+
+================================================================================
+CONTENTS                                                   *kb-index-contents*
+
+  |kb-mason|          Package manager — installs and manages LSP servers,
+                      DAP adapters, linters, and formatters. Start here
+                      when a language server is missing or needs updating.
+
+  |kb-lsp|            Language Server Protocol — go to definition, find
+                      references, rename symbols, code actions, diagnostics.
+                      Also covers Java-specific jdtls refactoring.
+
+  |kb-debugging|      DAP debugger — breakpoints, step through code, inspect
+                      variables. Also covers Java test running via jdtls.
+
+  |kb-cmp|            Auto-completion and snippets — how to navigate the
+                      completion menu, confirm items, expand snippets, and
+                      complete in the command line.
+
+  |kb-telescope|      Fuzzy finder — search files, grep across the project,
+                      send results to the quickfix list. Explains what the
+                      quickfix and location lists are.
+
+  |kb-harpoon|        Quick file switching — pin files to slots and jump
+                      between them instantly without fuzzy finding.
+
+  |kb-fugitive|       Git — stage, unstage, commit, diff, blame, and browse
+                      history without leaving Neovim.
+
+  |kb-remaps|         Personal remaps and useful defaults — diagnostics,
+                      file/window management, editing tricks, window
+                      navigation, and help file navigation.
+
+================================================================================
+PLUGIN RELATIONSHIPS                                        *kb-index-relations*
+
+    Understanding how the main plugins connect:
+
+    Mason  →  installs the binaries (LSP servers, DAP adapters)
+    lspconfig  →  tells Neovim how to start those LSP servers
+    nvim-cmp  →  uses the running LSP to power completion suggestions
+    nvim-dap  →  uses the installed DAP adapters to run debug sessions
+
+    In plain terms: if a language feature isn't working, check Mason first
+    to confirm the server is installed, then check |kb-lsp| for the mapping.
+    If a debug session won't start, check Mason for the DAP adapter, then
+    check |kb-debugging|.
+
+================================================================================
+QUICK LOOKUP                                              *kb-index-quick*
+
+    Common tasks and where to find them:
+
+    Install a language server .............. |kb-mason|
+    Jump to a function definition .......... |kb-lsp-navigation|
+    Rename a symbol across the project ..... |kb-lsp-actions|
+    Set a breakpoint ....................... |kb-debugging-breakpoints|
+    Start / continue a debug session ....... |kb-debugging-core|
+    Run a Java test ........................ |kb-debugging-java|
+    Search for text across the project ..... |kb-telescope-grep|
+    Find a file by name .................... |kb-telescope-files|
+    Pin a file for quick access ............ |kb-harpoon-manage|
+    Jump to a pinned file .................. |kb-harpoon-slots|
+    Stage and commit changes ............... |kb-fugitive-summary|
+    View a file diff ....................... |kb-fugitive-diff|
+    Navigate completion menu ............... |kb-cmp-insert|
+    Open the file explorer ................. |kb-remaps-filewindow|
+    Move lines up / down ................... |kb-remaps-editing|
+    Yank to system clipboard ............... |kb-remaps-editing|
+    Navigate between windows ............... |kb-remaps-windows|
+
+================================================================================
+vim:ft=help:tw=78:

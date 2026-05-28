@@ -1,6 +1,6 @@
 local M = {}
 
-M.on_attach_remap = function(client, bufnr)
+M.on_attach_remap = function(_, bufnr)
 	local opts = {buffer = bufnr, remap = false}
 	-- Jump to definition
 	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition({border = 'rounded'}) end, opts)

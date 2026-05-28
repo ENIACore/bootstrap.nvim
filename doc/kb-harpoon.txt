@@ -1,0 +1,66 @@
+*kb-harpoon*	Harpoon Keymaps (quick file navigation)
+
+================================================================================
+CONTENTS                                                  *kb-harpoon-contents*
+
+  1. List Management ........... |kb-harpoon-manage|
+  2. File Slots ................ |kb-harpoon-slots|
+  3. Sequential Navigation ..... |kb-harpoon-seq|
+
+================================================================================
+1. LIST MANAGEMENT                                        *kb-harpoon-manage*
+
+    Harpoon keeps a short list of pinned files per project. You add files
+    to it and jump between them with single keystrokes.
+
+`<leader>a`                                                   *harpoon-add*
+    Add the current file to the Harpoon list. Use when you're opening a
+    file you know you'll be jumping back to repeatedly during a session.
+
+`<C-e>`                                                  *harpoon-menu*
+    Toggle the Harpoon quick menu, showing all pinned files with their slot
+    numbers. Use to see what's pinned, reorder entries, or remove one by
+    deleting its line.
+
+    Inside the menu:
+    - Edit lines to reorder or rename entries
+    - `dd` to remove a file from the list
+    - `<CR>` on a line to jump to that file
+    - `q` or `<Esc>` to close
+
+================================================================================
+2. FILE SLOTS                                              *kb-harpoon-slots*
+
+    The first four files in your Harpoon list are instantly accessible.
+    Assign your most active files to these slots via the menu.
+
+`<C-h>`                                                    *harpoon-slot-1*
+    Jump to slot 1 (first file in the Harpoon list).
+
+`<C-t>`                                                    *harpoon-slot-2*
+    Jump to slot 2.
+
+`<C-n>`                                                    *harpoon-slot-3*
+    Jump to slot 3.
+
+`<C-s>`                                                    *harpoon-slot-4*
+    Jump to slot 4.
+
+    NOTE: `<C-h>` and `<C-n>` shadow common defaults (split navigation and
+    cmp next-item). If those stop working in certain contexts, Harpoon is
+    likely intercepting them. See also |kb-lsp| and |kb-cmp|.
+
+================================================================================
+3. SEQUENTIAL NAVIGATION                                    *kb-harpoon-seq*
+
+`<C-S-P>`                                                   *harpoon-prev*
+    Jump to the previous file in the Harpoon list relative to the current
+    one. Use to cycle backwards through your pinned files without opening
+    the menu.
+
+`<C-S-N>`                                                   *harpoon-next*
+    Jump to the next file in the Harpoon list relative to the current one.
+    Use to cycle forwards through your pinned files.
+
+================================================================================
+vim:ft=help:tw=78:

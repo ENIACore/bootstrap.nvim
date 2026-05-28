@@ -1,0 +1,176 @@
+*kb-fugitive*	Fugitive Keymaps (Git inside Neovim)
+
+================================================================================
+CONTENTS                                                 *kb-fugitive-contents*
+
+  1. Concepts .................. |kb-fugitive-concepts|
+  2. Opening Fugitive .......... |kb-fugitive-open|
+  3. Summary Window ............ |kb-fugitive-summary|
+  4. Diffing ................... |kb-fugitive-diff|
+  5. Committing ................ |kb-fugitive-commit|
+  6. History & Blame ........... |kb-fugitive-history|
+  7. Branches .................. |kb-fugitive-branches|
+
+================================================================================
+1. CONCEPTS                                            *kb-fugitive-concepts*
+
+    FUGITIVE ~
+    A Git wrapper that lets you run Git operations inside Neovim. The core
+    of it is the summary window (`:Git` / `<leader>gs`) which gives you a
+    visual overview of your repo state — staged files, unstaged files, and
+    untracked files — and lets you act on them without leaving the editor.
+
+    STAGED vs UNSTAGED ~
+    Staged (index): changes you've marked for inclusion in the next commit.
+    Unstaged (working tree): changes you've made but not yet staged.
+    Fugitive shows both in the summary and lets you move changes between them.
+
+    HUNK ~
+    A contiguous block of changed lines within a file. A single file can
+    have multiple hunks — e.g. a change at line 10 and another at line 80.
+    Fugitive lets you stage/unstage individual hunks rather than whole files.
+
+================================================================================
+2. OPENING FUGITIVE                                       *kb-fugitive-open*
+
+`<leader>gs`                                              *fugitive-open*
+    Open the Fugitive summary window. Your entry point for all Git work —
+    shows repo status, staged/unstaged changes, and untracked files.
+
+`:Git <cmd>`                                              *fugitive-cmd*
+    Run any Git command directly, e.g. `:Git pull`, `:Git push`,
+    `:Git rebase -i HEAD~3`. Output appears in a split buffer.
+
+`:Git`  (no args)                                         *fugitive-status*
+    Same as `<leader>gs` — opens the summary window.
+
+================================================================================
+3. SUMMARY WINDOW                                       *kb-fugitive-summary*
+
+    These keys are active inside the Fugitive summary window.
+
+`s`                                                       *fugitive-stage*
+    Stage the file or hunk under the cursor. Use to mark a change for
+    inclusion in the next commit.
+
+`u`                                                       *fugitive-unstage*
+    Unstage the file or hunk under the cursor. Moves it back to unstaged.
+
+`U`                                                       *fugitive-unstage-all*
+    Unstage everything — reset the index to HEAD. Use to start over with
+    your staging without losing working tree changes.
+
+`-`                                                       *fugitive-toggle-stage*
+    Toggle stage/unstage on the file or hunk under the cursor. Faster
+    alternative to switching between `s` and `u`.
+
+`=`                                                       *fugitive-inline-diff*
+    Toggle an inline diff of the file under the cursor, showing exactly
+    what changed. Use to review a file's changes without opening a full diff.
+
+`X`                                                       *fugitive-discard*
+    Discard the changes to the file under the cursor, reverting it to the
+    last committed state. Destructive — use carefully.
+
+`<CR>`                                                    *fugitive-open-file*
+    Open the file under the cursor in the current window.
+
+`o`                                                       *fugitive-open-split*
+    Open the file under the cursor in a horizontal split.
+
+`gO`                                                      *fugitive-open-vsplit*
+    Open the file under the cursor in a vertical split.
+
+`I` / `P`                                                 *fugitive-patch*
+    Open the patch/hunk staging interface for the file under the cursor.
+    Lets you stage individual lines within a hunk interactively.
+
+`q`                                                       *fugitive-close*
+    Close the summary window.
+
+`g?`                                                      *fugitive-help*
+    Show all available Fugitive keys for the current window.
+
+================================================================================
+4. DIFFING                                               *kb-fugitive-diff*
+
+`dd`                                                      *fugitive-diff*
+    Open a diff of the file under the cursor (in the summary window).
+    Shows working tree vs index (unstaged) or index vs HEAD (staged).
+
+`dv`                                                      *fugitive-diff-vsplit*
+    Open the diff in a vertical split.
+
+`:Gdiffsplit`                                             *fugitive-gdiffsplit*
+    From inside any file buffer, open a side-by-side diff of the current
+    file against the index. Use to review your changes before staging.
+
+`:Gdiffsplit HEAD~1`                                      *fugitive-diff-commit*
+    Diff the current file against a specific commit. Replace `HEAD~1` with
+    any ref, branch, or commit hash.
+
+    Inside a diff, use standard Vim diff motions:
+    - `]c`   jump to next change
+    - `[c`   jump to previous change
+    - `do`   obtain change from the other side (diff obtain)
+    - `dp`   put change to the other side (diff put)
+
+================================================================================
+5. COMMITTING                                           *kb-fugitive-commit*
+
+`cc`                                                      *fugitive-commit*
+    Open a commit message buffer. Write your message and use `:wq` to
+    confirm the commit, or `:q!` to abort.
+
+`ca`                                                      *fugitive-commit-amend*
+    Amend the last commit — opens the commit buffer pre-filled with the
+    previous message. Use to fix a typo or add a forgotten staged change.
+
+`cw`                                                      *fugitive-commit-reword*
+    Reword the last commit message without changing its content.
+
+`ce`                                                      *fugitive-commit-extend*
+    Amend the last commit with currently staged changes, keeping the
+    existing message (no editor opens).
+
+`:Git push`                                               *fugitive-push*
+    Push current branch to its remote. Add flags as needed, e.g.
+    `:Git push --force-with-lease`.
+
+================================================================================
+6. HISTORY & BLAME                                      *kb-fugitive-history*
+
+`:Git log`                                                *fugitive-log*
+    Show the commit log for the current branch in a buffer.
+
+`:GcLog`                                                  *fugitive-gclog*
+    Load the commit history for the current file into the quickfix list.
+    Use `]q` / `[q` to step through each commit that touched the file.
+
+`:Git blame`                                              *fugitive-blame*
+    Open an inline blame view alongside the current file, showing which
+    commit last changed each line and who authored it.
+
+    Inside blame view:
+    - `<CR>`   open the commit that changed the line under the cursor
+    - `o`      open the commit in a split
+    - `q`      close the blame view
+
+================================================================================
+7. BRANCHES                                             *kb-fugitive-branches*
+
+`:Git branch`                                             *fugitive-branch*
+    List all local branches.
+
+`:Git checkout -b <name>`                                 *fugitive-checkout*
+    Create and switch to a new branch.
+
+`:Git merge <branch>`                                     *fugitive-merge*
+    Merge a branch into the current one.
+
+`:Git rebase -i HEAD~N`                                   *fugitive-rebase*
+    Interactive rebase for the last N commits. Opens a buffer where you
+    can reorder, squash, edit, or drop commits.
+
+================================================================================
+vim:ft=help:tw=78:

@@ -1,0 +1,114 @@
+*kb-lsp*	LSP Keymaps (nvim-lsp, jdtls)
+
+================================================================================
+CONTENTS                                                      *kb-lsp-contents*
+
+  1. Navigation ................ |kb-lsp-navigation|
+  2. Information ............... |kb-lsp-information|
+  3. Code Actions .............. |kb-lsp-actions|
+  4. Diagnostics ............... |kb-lsp-diagnostics|
+  5. Java / jdtls .............. |kb-lsp-java|
+
+================================================================================
+1. NAVIGATION                                              *kb-lsp-navigation*
+
+`gd`                                                          *lsp-definition*
+    Jump to the definition of the symbol under the cursor. Use when you want
+    to see where a function, variable, or class is declared.
+
+`gD`                                                     *lsp-declaration*
+    Jump to the declaration (as opposed to definition). Rarely differs from
+    `gd` in most languages but useful in C/C++ header situations.
+
+`gr`                                                          *lsp-references*
+    (Default) Show all references to the symbol under the cursor in the
+    quickfix list. Use to find every place a symbol is used. See also
+    |lsp-vrr| for the explicit mapping.
+
+`gi`                                                      *lsp-implementation*
+    Jump to the implementation of an interface or abstract method. Use in
+    Java/TypeScript when you're on an interface method and want to see the
+    concrete class that implements it.
+
+`<leader>vrr`                                                      *lsp-vrr*
+    Show all references to the symbol under the cursor. Use to find every
+    place a function or variable is called or used across the project.
+
+`<leader>vws`                                           *lsp-workspace-symbol*
+    Fuzzy search for any symbol (function, class, variable) across the whole
+    project. Use when you know the name of something but not where it lives.
+
+================================================================================
+2. INFORMATION                                           *kb-lsp-information*
+
+`K`                                                               *lsp-hover*
+    Show documentation and type info for the symbol under the cursor in a
+    floating window. Use to quickly check a function's signature or what a
+    type is without leaving the file.
+
+`<C-h>`                                                   *lsp-signature-help*
+    Show the signature (parameter names and types) of the function you are
+    currently inside. Use when you're filling in arguments and want to see
+    what the function expects. Similar to `K` but focused on the call site.
+
+================================================================================
+3. CODE ACTIONS                                             *kb-lsp-actions*
+
+`<leader>vca`                                               *lsp-code-action*
+    Open a menu of available code actions at the cursor (imports, quick
+    fixes, refactors, etc.). Use when there's a warning/error and you want
+    the LSP to suggest a fix, or to trigger available refactors.
+
+`<leader>vrn`                                                  *lsp-rename*
+    Rename the symbol under the cursor everywhere in the project. Use when
+    refactoring — safer than a raw find-and-replace since the LSP understands
+    scope.
+
+`<leader>f`                                                    *lsp-format*
+    Format the current buffer using the LSP formatter. Use before committing
+    or whenever you want the file cleaned up to the project's style.
+
+================================================================================
+4. DIAGNOSTICS                                           *kb-lsp-diagnostics*
+
+    Diagnostics are errors, warnings, and hints the LSP places on your code.
+
+`]d`                                                    *lsp-next-diagnostic*
+    Jump to the next diagnostic in the file. Use to cycle through all
+    errors and warnings quickly.
+
+`[d`                                                    *lsp-prev-diagnostic*
+    Jump to the previous diagnostic in the file.
+
+`<leader>vd`                                          *lsp-open-diagnostic*
+    Open the diagnostic message under the cursor in a floating window. Use
+    when the virtual text is truncated and you need to read the full message.
+
+================================================================================
+5. JAVA / JDTLS                                              *kb-lsp-java*
+
+`<A-o>`                                                *lsp-java-organize-imports*
+    Automatically organize and sort import statements in the current Java
+    file. Use after adding new classes or to clean up unused imports.
+
+`crv`  (normal)                                        *lsp-java-extract-variable*
+    Extract the expression under the cursor into a new local variable. Use
+    when an inline expression is getting complex and deserves a named variable.
+
+`crv`  (visual)                                    *lsp-java-extract-variable-visual*
+    Extract the selected expression into a new local variable. Use like the
+    normal mode version but when the expression spans more than one token.
+
+`crc`  (normal)                                        *lsp-java-extract-constant*
+    Extract the expression under the cursor into a new constant. Use when a
+    magic value should be named and hoisted to a constant field.
+
+`crc`  (visual)                                    *lsp-java-extract-constant-visual*
+    Extract the selected expression into a new constant.
+
+`crm`  (visual)                                         *lsp-java-extract-method*
+    Extract the selected block of code into a new method. Use when a chunk
+    of logic inside a method should be broken out and named separately.
+
+================================================================================
+vim:ft=help:tw=78:
