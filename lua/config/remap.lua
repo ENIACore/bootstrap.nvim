@@ -49,3 +49,8 @@ vim.opt.scrolloff = 8
 
 -- Faster updates (aka error messages etc..)
 vim.opt.updatetime = 50
+
+-- Opens messages (error/info/warn) in scrollable copyable buffer
+vim.keymap.set('n', '<leader>m', function()
+    vim.cmd('redir @a | messages | redir END | new | put a')
+end, { desc = 'Open :messages in scratch buffer' })

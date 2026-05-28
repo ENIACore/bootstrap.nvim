@@ -1,3 +1,20 @@
+--[[
+-- Defines path to debug and test jars used by nvim dap
+--]]
+local mason_registry = require('mason-registry')
+local bundles = {}
+-- java-debug-adapter
+local java_debug = mason_registry.get_package('java-debug-adapter')
+local debug_path = java_debug:get_install_path()
+vim.list_extend(bundles, vim.fn.glob(debug_path .. '/extension/server/com.microsoft.java.debug.plugin-*.jar', true, true))
+-- java-test (vscode-java-test)
+local java_test = mason_registry.get_package('java-test')
+local test_path = java_test:get_install_path()
+vim.list_extend(bundles, vim.fn.glob(test_path .. '/extension/server/*.jar', true, true))
+
+
+
+
 local on_attach_remap = require('utils.lsp').on_attach_remap
 
 -- Create cache and worskpace directory
@@ -67,8 +84,7 @@ local config = {
 
     init_options = {
         -- Used to list jars (java-debug and vscode-java-test) that work with nvim plugins to communicate with jdtls
-        bundles = {
-        },
+        bundles = bundles,
         jvm_args = {
             '-Djava.import.generatesMetadataFilesAtProjectRoot=false', -- Prevents .classpath and .project files in project root directory
         },
