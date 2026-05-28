@@ -32,4 +32,21 @@ M.install_pkg_list = function(self, pkg_name_list)
     end
 end
 
+M.get_pkg_path = function(self, pkg_name)
+    local ok, pkg = pcall(self.registry.get_package, pkg_name)
+
+    if not ok then
+        vim.notify("Mason: unknown package '" .. pkg_name .. "'", vim.log.levels.WARN)
+        return nil
+    end
+
+    if not pkg:is_installed() then
+        vim.notify("Mason: package is not installed '" .. pkg_name .. "'", vim.log.levels.WARN)
+        return nil
+
+    end
+
+    return pkg:get_install_path()
+end
+
 return M
