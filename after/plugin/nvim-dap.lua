@@ -19,3 +19,6 @@ vim.keymap.set('n', '<leader>di', dap.step_into,         { desc = 'DAP: Step int
 vim.keymap.set('n', '<leader>do', dap.step_over,         { desc = 'DAP: Step over' })
 vim.keymap.set('n', '<leader>dO', dap.step_out,          { desc = 'DAP: Step out' })
 vim.keymap.set('n', '<leader>dt', dap.terminate,         { desc = 'DAP: Terminate' })
+
+local dapui = require('dapui')
+vim.keymap.set('n', '<leader>du', function() dapui.toggle() end, { desc = 'DAP: Toggle UI' })
