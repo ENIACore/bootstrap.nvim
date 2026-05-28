@@ -1,3 +1,6 @@
+--[[
+-- Sets settings harpoon (i.e quickly navigating files)
+--]]
 local harpoon = require("harpoon")
 
 -- REQUIRED

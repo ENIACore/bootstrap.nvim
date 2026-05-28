@@ -1,3 +1,6 @@
+--[[
+-- Sets settings for auto completion & snippets
+--]]
 local cmp = require'cmp'
 
 cmp.setup({
@@ -53,4 +56,3 @@ cmp.setup.cmdline(':', {
 	}),
 	matching = { disallow_symbol_nonprefix_matching = false }
 })
-

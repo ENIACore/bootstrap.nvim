@@ -23,7 +23,6 @@ local config = {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
 
     on_attach = function(client, bufnr)
-
         on_attach_remap(client, bufnr)
 
         local opts = { buffer = true, silent = true }
