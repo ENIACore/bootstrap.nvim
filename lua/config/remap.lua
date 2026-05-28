@@ -6,9 +6,6 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 -- Split screen
 vim.keymap.set("n", "<leader>s", vim.cmd.vsp)
 
--- Switch screens
-vim.keymap.set("n", "<leader>w", function() vim.cmd('wincmd w') end)
-
 -- Move lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
