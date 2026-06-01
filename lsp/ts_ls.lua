@@ -1,6 +1,5 @@
 local on_attach_remap = require('utils.lsp').on_attach_remap
 
----@type vim.lsp.Config
 return {
   init_options = { hostInfo = 'neovim' },
   cmd = function(dispatchers, config)

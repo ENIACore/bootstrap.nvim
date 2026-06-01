@@ -13,6 +13,7 @@ local servers = {
   "pyright",
   "tailwindcss-language-server",
   "typescript-language-server",
+  "marksman",
 }
 
 local lsp_names = {
@@ -25,6 +26,7 @@ local lsp_names = {
   "pyright",
   "tailwindcss",
   "ts_ls",
+  "marksman",
 }
 
 registry:install_pkg_list(servers)
