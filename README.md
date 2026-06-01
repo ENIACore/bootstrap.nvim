@@ -1,10 +1,18 @@
-# Necessary installs (external)
-`brew install ripgrep` (fuzzy finder - telescope)
-`brew install fd` (faster file handling - telescope)
-`brew install openjdk` (Java 26 for jdtls - nvim-jdtls)
-# TODO include temurin@8 and openjdk@11 (remember this command: sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk)
-# TODO possibly include adding jdtls to path after mason install
-# TODO include python 3.9 install
-# TODO include auto install of golang
+# External dependencies
+
+1. `brew install ripgrep` (fuzzy finder - telescope)
+2. `brew install fd` (faster file handling - telescope)
+3. `brew install openjdk` (Java 26 for jdtls - nvim-jdtls)
+
+# Bootstrap TODO
+
+- automate Java installations: temurin@8, openjdk@11, temurin@17, openjdk@26
+- ensure java homes in `/Library/Java/JavaVirtualMachines/*` via `sudo ln -sfn /opt/homebrew/opt/openjdk@<version>/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-<version>.jdk`
+- automate python (3.9), npm (latest), golang installations
+- automate `:Copilot setup` command and ensure user checks yes on `Copilot chat in the IDE enabled in GitHub settings`
+
+# TODO
+
+# References
 
 - All lsp configs can be found at `https://github.com/neovim/nvim-lspconfig/tree/master/lsp`

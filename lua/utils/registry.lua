@@ -1,7 +1,5 @@
 local M = {}
 
-vim.env.npm_config_registry = "https://registry.npmjs.org/"
-
 local registry = require("mason-registry")
 
 M.registry = registry
