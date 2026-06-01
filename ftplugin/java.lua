@@ -44,12 +44,12 @@ local config = {
 
         local opts = { buffer = true, silent = true }
 
-        vim.keymap.set("n", "<A-o>", require('jdtls').organize_imports, opts)
-        vim.keymap.set("n", "crv", require('jdtls').extract_variable, opts)
-        vim.keymap.set("v", "crv", function() require('jdtls').extract_variable(true) end, opts)
-        vim.keymap.set("n", "crc", require('jdtls').extract_constant, opts)
-        vim.keymap.set("v", "crc", function() require('jdtls').extract_constant(true) end, opts)
-        vim.keymap.set("v", "crm", function() require('jdtls').extract_method(true) end, opts)
+        vim.keymap.set("n", "<C-o>", require('jdtls').organize_imports, opts) -- TODO add to: gopls, tsserver, pylsp
+        vim.keymap.set("n", "crv", require('jdtls').extract_variable, opts) -- TODO: add to rust-analyzer, clangd, pylsp
+        vim.keymap.set("v", "crv", function() require('jdtls').extract_variable(true) end, opts) -- TODO: add to rust-analyzer, clangd, pylsp
+        vim.keymap.set("n", "crc", require('jdtls').extract_constant, opts) -- TODO: add to rust-analyzer, clangd
+        vim.keymap.set("v", "crc", function() require('jdtls').extract_constant(true) end, opts) -- TODO: add to rust-analyzer, clangd
+        vim.keymap.set("v", "crm", function() require('jdtls').extract_method(true) end, opts) -- TODO: add to rust-analyzer, clangd, pylsp
 
         -- nvim-dap (if using)
         vim.keymap.set("n", "<leader>df", require('jdtls').test_class, opts)
@@ -91,6 +91,10 @@ local config = {
         bundles = bundles,
         jvm_args = {
             '-Djava.import.generatesMetadataFilesAtProjectRoot=false', -- Prevents .classpath and .project files in project root directory
+        },
+        codelens =  {
+            implementationsCodeLens = { enabled = true },
+            referencesCodeLens = { enabled = true },
         },
     }
 }
