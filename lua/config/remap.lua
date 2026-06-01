@@ -11,7 +11,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Yank to clipboard
-vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>y", '"+y')
 
 -- Open undo tree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -51,35 +51,35 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
 
 -- Opens messages (error/info/warn) in scrollable copyable buffer
-vim.keymap.set('n', '<leader>m', function()
-    local messages = vim.fn.execute('messages')
-    local lines = vim.split(messages, '\n')
-    -- take last 40
-    local start = math.max(1, #lines - 39)
-    lines = vim.list_slice(lines, start, #lines)
+vim.keymap.set("n", "<leader>m", function()
+	local messages = vim.fn.execute("messages")
+	local lines = vim.split(messages, "\n")
+	-- take last 40
+	local start = math.max(1, #lines - 39)
+	lines = vim.list_slice(lines, start, #lines)
 
-    local buf = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
-    local width = math.floor(vim.o.columns * 0.8)
-    local height = 40
-    vim.api.nvim_open_win(buf, true, {
-        relative = 'editor',
-        width = width,
-        height = height,
-        col = math.floor((vim.o.columns - width) / 2),
-        row = math.floor((vim.o.lines - height) / 2),
-        style = 'minimal',
-        border = 'rounded',
-    })
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = 40
+	vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = math.floor((vim.o.columns - width) / 2),
+		row = math.floor((vim.o.lines - height) / 2),
+		style = "minimal",
+		border = "rounded",
+	})
 
-    vim.keymap.set('n', 'q', '<cmd>bd!<cr>', { buffer = buf, silent = true })
-end, { desc = 'Open last 40 messages in floating window' })
+	vim.keymap.set("n", "q", "<cmd>bd!<cr>", { buffer = buf, silent = true })
+end, { desc = "Open last 40 messages in floating window" })
 
 local function retab()
-  local view = vim.fn.winsaveview()
-  vim.cmd("retab! 4")
-  vim.fn.winrestview(view)
+	local view = vim.fn.winsaveview()
+	vim.cmd("retab! 4")
+	vim.fn.winrestview(view)
 end
 
 vim.keymap.set("n", "<leader>rt", retab, { desc = "Retab: convert tabs to spaces" })
