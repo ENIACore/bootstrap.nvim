@@ -5,5 +5,6 @@
 # TODO include temurin@8 and openjdk@11 (remember this command: sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk)
 # TODO possibly include adding jdtls to path after mason install
 # TODO include python 3.9 install
+# TODO include auto install of golang
 
 - All lsp configs can be found at `https://github.com/neovim/nvim-lspconfig/tree/master/lsp`

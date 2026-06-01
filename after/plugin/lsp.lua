@@ -4,29 +4,29 @@
 local registry = require("utils.registry")
 
 local servers = {
-  "bash-language-server",
-  "dockerfile-language-server",
-  "emmet-language-server",
-  "eslint-lsp",
-  --"gopls", -- requires go installation
-  "lua-language-server",
-  "pyright",
-  "tailwindcss-language-server",
-  "typescript-language-server",
-  "marksman",
+	"bash-language-server",
+	"dockerfile-language-server",
+	"emmet-language-server",
+	"eslint-lsp",
+	"gopls", -- requires go installation
+	"lua-language-server",
+	"pyright",
+	"tailwindcss-language-server",
+	"typescript-language-server",
+	"marksman",
 }
 
 local lsp_names = {
-  "bashls",
-  "dockerls",
-  "emmet_ls",
-  "eslint",
-  --"gopls",
-  "lua_ls",
-  "pyright",
-  "tailwindcss",
-  "ts_ls",
-  "marksman",
+	"bashls",
+	"dockerls",
+	"emmet_ls",
+	"eslint",
+	"gopls",
+	"lua_ls",
+	"pyright",
+	"tailwindcss",
+	"ts_ls",
+	"marksman",
 }
 
 registry:install_pkg_list(servers)

@@ -1,0 +1,64 @@
+--[[
+-- Automatically ensures formatters are installed and enabled
+--]]
+local registry = require("utils.registry")
+local formatters = {
+	"prettierd", -- ts, js, html, css, scss, json, jsonc, markdown, yaml, graphql
+	"ruff", -- python (linter and formatter, contains both ruff_format and ruff_organize_imports)
+	"goimports", -- golang
+	"gofumpt", -- golang
+	"stylua", -- lua
+	"shfmt", -- sh, bash
+	"google-java-format", -- java
+	"clang-format", -- c, cpp
+	"sql-formatter", -- sql
+	"xmlformatter", -- xml
+}
+registry:install_pkg_list(formatters)
+
+local conform = require("conform")
+
+conform.setup({
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_format = "fallback",
+	},
+	formatters_by_ft = {
+		python = { "ruff_format", "ruff_organize_imports" },
+		javascript = { "prettierd", "prettier" },
+		go = { "goimports", "gofumpt" },
+		html = { "prettierd", "prettier" },
+		css = { "prettierd", "prettier" },
+		scss = { "prettierd", "prettier" },
+		json = { "prettierd", "prettier" },
+		jsonc = { "prettierd", "prettier" },
+		lua = { "stylua" },
+		sh = { "shfmt" },
+		bash = { "shfmt" },
+		markdown = { "prettierd", "prettier" },
+		yaml = { "prettierd", "prettier" },
+		toml = { "taplo" },
+		graphql = { "prettierd", "prettier" },
+		java = { "google-java-format" }, -- TODO: Use provided dev tools xml
+		c = { "clang-format" },
+		cpp = { "clang-format" },
+		sql = { "sql-formatter" },
+		xml = { "xmlformatter" },
+	},
+})
+
+vim.g.autoformat = true
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		if vim.g.autoformat then
+			require("conform").format({ bufnr = args.buf })
+		end
+	end,
+})
+
+vim.api.nvim_create_user_command("ToggleAutoformat", function()
+	vim.g.autoformat = not vim.g.autoformat
+	vim.notify("Autoformat " .. (vim.g.autoformat and "enabled" or "disabled"))
+end, {})
