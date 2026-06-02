@@ -65,7 +65,14 @@ local config = {
 
 	-- Here you can configure eclipse.jdt.ls specific settings, see https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request for a list of options
 	settings = {
-		format = { enabled = true, tabSize = 4 },
+		format = {
+			enabled = true,
+			tabSize = 4,
+			settings = {
+				url = vim.fn.expand("~/.config/nvim/lint/java-formatter.xml"),
+				profile = "WSGC Conventions",
+			},
+		},
 		imports = { gradle = { enabled = true } },
 		java = {
 			configuration = {

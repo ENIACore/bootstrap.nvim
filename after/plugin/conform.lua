@@ -9,7 +9,7 @@ local formatters = {
 	"gofumpt", -- golang
 	"stylua", -- lua
 	"shfmt", -- sh, bash
-	"google-java-format", -- java
+	"google-java-format",
 	"clang-format", -- c, cpp
 	"sql-formatter", -- sql
 	"xmlformatter", -- xml
@@ -39,7 +39,7 @@ conform.setup({
 		yaml = { "prettierd", "prettier" },
 		toml = { "taplo" },
 		graphql = { "prettierd", "prettier" },
-		java = { "google-java-format" }, -- TODO: Use provided dev tools xml
+		java = {}, -- use formatter specified in jdtls (java.lua), can use "google-java-format" if preferred
 		c = { "clang-format" },
 		cpp = { "clang-format" },
 		sql = { "sql-formatter" },
