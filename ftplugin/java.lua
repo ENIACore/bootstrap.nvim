@@ -81,6 +81,7 @@ local config = {
 					{
 						name = "JavaSE-1.8",
 						path = "/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home",
+						default = true, -- Java version used by legacy projects
 					},
 					{
 						name = "JavaSE-11",
@@ -93,7 +94,6 @@ local config = {
 					{
 						name = "JavaSE-26",
 						path = "/opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home",
-						default = true, -- used when no project-level version is detected
 					},
 				},
 			},
