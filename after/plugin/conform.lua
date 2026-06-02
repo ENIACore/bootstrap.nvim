@@ -49,16 +49,10 @@ conform.setup({
 
 vim.g.autoformat = true
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function(args)
-		if vim.g.autoformat then
-			require("conform").format({ bufnr = args.buf })
-		end
-	end,
-})
-
 vim.api.nvim_create_user_command("ToggleAutoformat", function()
 	vim.g.autoformat = not vim.g.autoformat
+	require("conform").setup({
+		format_on_save = vim.g.autoformat and { timeout_ms = 500, lsp_fallback = true } or nil,
+	})
 	vim.notify("Autoformat " .. (vim.g.autoformat and "enabled" or "disabled"))
 end, {})
