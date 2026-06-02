@@ -14,9 +14,12 @@
 
 # TODO
 
-- Login to copilot AND copilot chat with enterprise account
 - Add copilot chat shortcuts (i.e cce to explain selected text etc)
 
 # References
 
 - All lsp configs can be found at `https://github.com/neovim/nvim-lspconfig/tree/master/lsp`
+
+# Not Possible
+
+- Login to copilot AND copilot chat with enterprise account
