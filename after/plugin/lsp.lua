@@ -14,6 +14,7 @@ local servers = {
 	"tailwindcss-language-server",
 	"typescript-language-server",
 	"marksman",
+	"json-lsp",
 }
 
 local lsp_names = {
@@ -27,6 +28,7 @@ local lsp_names = {
 	"tailwindcss",
 	"ts_ls",
 	"marksman",
+	"jsonls",
 }
 
 registry:install_pkg_list(servers)
