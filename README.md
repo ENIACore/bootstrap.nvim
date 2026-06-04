@@ -12,6 +12,7 @@
 - automate `:Copilot setup` command and ensure user checks yes on `Copilot chat in the IDE enabled in GitHub settings`
 - automate jshint install via `npm -g install jshint`
 - automate global .gitignore file (primarily for jdtls files)
+- automate installation of shellcheck for bashls
 
 # TODO
 
