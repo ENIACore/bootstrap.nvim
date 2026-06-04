@@ -16,6 +16,8 @@
 # TODO
 
 - Add copilot chat shortcuts (i.e cce to explain selected text etc)
+- Add multi page scratchpad for notes etc
+- Fix lua scratchpad and rename it to something else
 
 # References
 
