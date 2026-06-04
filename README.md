@@ -18,6 +18,7 @@
 - Add copilot chat shortcuts (i.e cce to explain selected text etc)
 - Add multi page scratchpad for notes etc
 - Fix lua scratchpad and rename it to something else
+- Add command in jdtls to get detected java version OR also on startup
 
 # References
 
