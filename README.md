@@ -13,6 +13,7 @@
 - automate jshint install via `npm -g install jshint`
 - automate global .gitignore file (primarily for jdtls files)
 - automate installation of shellcheck for bashls
+- automate `brew install tree-sitter`
 
 # TODO
 

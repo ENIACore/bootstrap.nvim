@@ -33,7 +33,7 @@ return {
 	},
 	settings = {
 		python = {
-			pythonPath = vim.fn.getcwd() .. "/env/bin/python3",
+			pythonPath = vim.fn.system("which python3"),
 			analysis = {
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,

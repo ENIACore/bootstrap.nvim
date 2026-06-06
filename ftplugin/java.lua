@@ -3,6 +3,7 @@
 -- @TODO@ add following command as keybinding to get detected version OR on startup :lua local c = vim.lsp.get_clients({ name = "jdtls", bufnr = 0 })[1]; print(vim.inspect(c.request_sync("workspace/executeCommand", { command = "java.project.getSettings", arguments = { vim.uri_from_bufnr(0), { "org.eclipse.jdt.ls.core.vm.location" } } }, 1000)))
 
 --]]
+vim.treesitter.start()
 
 local mason_registry = require("mason-registry")
 local bundles = {}
