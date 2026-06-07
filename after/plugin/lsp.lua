@@ -11,6 +11,7 @@ local servers = {
 	"gopls", -- requires go installation
 	"lua-language-server",
 	"pyright",
+	"python-lsp-server", -- For python docs, not just stubs provided by pyright
 	"tailwindcss-language-server",
 	"typescript-language-server",
 	"marksman",
@@ -25,6 +26,7 @@ local lsp_names = {
 	"gopls",
 	"lua_ls",
 	"pyright",
+	"pylsp",
 	"tailwindcss",
 	"ts_ls",
 	"marksman",

@@ -4,6 +4,7 @@
 local registry = require("utils.registry")
 local linters = {
 	"checkstyle",
+	"ruff",
 }
 registry:install_pkg_list(linters)
 
@@ -11,6 +12,7 @@ local lint = require("lint")
 lint.linters_by_ft = {
 	java = { "checkstyle" },
 	javascript = { "jshint" }, -- jshint installed manually via `npm install -g jshint`
+	python = { "ruff" },
 }
 
 require("lint.linters.checkstyle").config_file = vim.fn.expand("~/.config/nvim/lint/java-checkstyle.xml")
