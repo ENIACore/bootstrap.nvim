@@ -24,4 +24,19 @@ return {
 		documentRangeFormattingProvider = false,
 		diagnosticProvider = false,
 	},
+	settings = {
+		pylsp = {
+			plugins = {
+				-- Disable all diagnostic providers
+				pyflakes = { enabled = false },
+				pylint = { enabled = false },
+				pycodestyle = { enabled = false },
+				pydocstyle = { enabled = false },
+				mccabe = { enabled = false },
+				autopep8 = { enabled = false },
+				yapf = { enabled = false },
+				ruff = { enabled = false },
+			},
+		},
+	},
 }
