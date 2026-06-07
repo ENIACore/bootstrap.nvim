@@ -10,7 +10,7 @@ local servers = {
 	"eslint-lsp",
 	"gopls", -- requires go installation
 	"lua-language-server",
-	-- "pyright", --  No longer used due to no docs
+	"pyright",
 	"python-lsp-server",
 	"tailwindcss-language-server",
 	"typescript-language-server",
@@ -25,7 +25,7 @@ local lsp_names = {
 	"eslint",
 	"gopls",
 	"lua_ls",
-	-- "pyright",
+	"pyright",
 	"pylsp",
 	"tailwindcss",
 	"ts_ls",

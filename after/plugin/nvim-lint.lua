@@ -12,7 +12,7 @@ local lint = require("lint")
 lint.linters_by_ft = {
 	java = { "checkstyle" },
 	javascript = { "jshint" }, -- jshint installed manually via `npm install -g jshint`
-	python = { "ruff" },
+	-- python = { "ruff" }, -- Disable due to identical errors with lsp
 }
 
 require("lint.linters.checkstyle").config_file = vim.fn.expand("~/.config/nvim/lint/java-checkstyle.xml")
