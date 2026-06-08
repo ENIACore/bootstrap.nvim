@@ -63,8 +63,8 @@ local config = {
 		end, opts) -- TODO: add to rust-analyzer, clangd, pylsp
 
 		-- nvim-dap (if using)
-		vim.keymap.set("n", "<leader>df", require("jdtls").test_class, opts)
-		vim.keymap.set("n", "<leader>dn", require("jdtls").test_nearest_method, opts)
+		vim.keymap.set("n", "<leader>dtc", require("jdtls").test_class, opts)
+		vim.keymap.set("n", "<leader>dtm", require("jdtls").test_nearest_method, opts)
 	end,
 
 	-- Here you can configure eclipse.jdt.ls specific settings, see https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request for a list of options
