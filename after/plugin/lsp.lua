@@ -16,6 +16,7 @@ local servers = {
 	"typescript-language-server",
 	"marksman",
 	"json-lsp",
+	"vue-language-server",
 }
 
 local lsp_names = {
@@ -31,6 +32,7 @@ local lsp_names = {
 	"ts_ls",
 	"marksman",
 	"jsonls",
+	"vue_ls",
 }
 
 registry:install_pkg_list(servers)
