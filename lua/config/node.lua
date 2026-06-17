@@ -1,4 +1,4 @@
--- Ensures correct node version is always read by neovim, necessary when using nvm which is not detectable by neovim
+-- Gives warning to user if correct node version not found in /usr/local/bin, prevents issues if nvm is used
 local function check_node()
 	local bins = { "node", "npm", "npx" }
 	local missing = {}
@@ -8,7 +8,7 @@ local function check_node()
 			table.insert(missing, bin)
 			vim.notify(bin .. " not found on path at /usr/local/bin", vim.log.levels.WARN)
 			vim.notify(
-				'Run the command "sudo ln -sf $(which ' .. bin .. ') /usr/local/bin/"' .. bin,
+				'Run the command "sudo ln -sf $(which ' .. bin .. ") /usr/local/bin/" .. bin .. '"',
 				vim.log.levels.WARN
 			)
 		end
