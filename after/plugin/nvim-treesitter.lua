@@ -18,5 +18,6 @@ treesitter.install({
 	"css", -- emmet_ls.lua / tailwindcss.lua
 	"tsx", -- ts_ls.lua
 	"dockerfile", -- dockerls.lua
-	"vue",
+	"vue", -- vue_ls.lua
+	"java", -- ftplugin/java.lua
 })

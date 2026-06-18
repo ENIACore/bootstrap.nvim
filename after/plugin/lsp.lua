@@ -17,6 +17,7 @@ local servers = {
 	"marksman",
 	"json-lsp",
 	"vue-language-server",
+	"jdtls", -- No lsp/* file (so no lsp name), configured in ftplugin/java.lua
 }
 
 local lsp_names = {
