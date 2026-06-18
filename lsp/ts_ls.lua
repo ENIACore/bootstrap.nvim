@@ -18,6 +18,7 @@ return {
 		"javascriptreact",
 		"typescript",
 		"typescriptreact",
+		"vue",
 	},
 	root_dir = function(bufnr, on_dir)
 		local root_markers = { "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" }
