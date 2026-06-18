@@ -89,7 +89,7 @@ local config = {
 					},
 					{
 						name = "JavaSE-11",
-						path = "/opt/homebrew/Cellar/openjdk@11/11.0.31/libexec/openjdk.jdk/Contents/Home",
+						path = "/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home",
 					},
 					{
 						name = "JavaSE-17",
