@@ -1,12 +1,20 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local on_attach_remap = require("utils.lsp").on_attach_remap
 
+local mason_path = vim.fn.stdpath("data") .. "/mason"
+local vue_ts_sdk = mason_path .. "/packages/vue-language-server/node_modules/typescript/lib"
+
 return {
 	cmd = { "vue-language-server", "--stdio" },
 	filetypes = { "vue" },
 	root_markers = { "package.json" },
 	capabilities = capabilities,
 	on_attach = on_attach_remap,
+	init_options = {
+		typescript = {
+			tsdk = vue_ts_sdk,
+		},
+	},
 	on_init = function(client)
 		local retries = 0
 
