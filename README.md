@@ -66,6 +66,6 @@ scripts/test-skip-known-failures.sh
 # Build artifacts / generated config
 **/babel.config.js
 **/tsconfig.json
-**/.prettierc
+**/.prettierrc
 EOF
 ```
