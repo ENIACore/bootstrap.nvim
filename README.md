@@ -59,6 +59,9 @@ cat ~/.config/nvim/git/.gitignore > ~/work/.gitignore
 # Add work specific gitignore settings
 cat >> ~/work/.gitignore << 'EOF'
 
+# Project-specific scripts
+scripts/test-skip-known-failures.sh
+
 # Build artifacts / generated config
 **/babel.config.js
 **/tsconfig.json
