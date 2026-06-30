@@ -6,6 +6,9 @@
 
 # Bootstrap TODO
 
+- automate `tsconfig.json` setup (contents at bottom)
+- automate global `~/.gitignore` setup via `git config --global core.excludesfile ~/.config/nvim/git/.gitignore`
+- automate work specific gitconfig and gitignore setup (commands at bottom)
 - automate Java installations: temurin@8, openjdk@11, temurin@17, openjdk@26
 - ensure java homes in `/Library/Java/JavaVirtualMachines/*` via `sudo ln -sfn /opt/homebrew/opt/openjdk@<version>/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-<version>.jdk`
 - automate python (3.9), npm (latest), golang installations
@@ -17,6 +20,7 @@
 
 # TODO
 
+- Implement automated `npm install @types/jest @types/node` and basic `tsconfig.json` on node projects if they don't already have it (or add warnign to user when doing `vim .` on project without
 - Add multi page scratchpad for notes etc
 - Fix lua scratchpad and rename it to something else
 - Add command in jdtls to get detected java version OR also on startup
@@ -31,3 +35,32 @@
 # Not Possible
 
 - Login to copilot AND copilot chat with enterprise account
+
+### tsconfig.json
+
+```
+{
+  "compilerOptions": {
+    "checkJs": false,
+    "noEmit": true,
+    "types": ["jest", "node"]
+  },
+  "exclude": ["**/node_modules/**"]
+}
+```
+
+### work gitconfig setup
+
+```
+git config -f ~/work/.gitconfig core.excludesfile ~/work/.gitignore # Add work specifc gitconfig that uses work specific gitignore
+git config --global includeIf.gitdir:~/work/.path ~/work/.gitconfig # Tell global gitconfig to use work gitconfig if inside ~/work
+# Create work gitignore based on global gitignore
+cat ~/.config/nvim/git/.gitignore > ~/work/.gitignore
+# Add work specific gitignore settings
+cat >> ~/work/.gitignore << 'EOF'
+
+# Build artifacts / generated config
+**/babel.config.js
+**/tsconfig.json
+EOF
+```

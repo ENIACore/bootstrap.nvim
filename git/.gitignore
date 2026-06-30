@@ -1,0 +1,16 @@
+# IDE - JetBrains (IntelliJ, WebStorm, etc.)
+.idea/
+*.iml
+
+# IDE - Eclipse / JDT Language Server
+.project
+.classpath
+.factorypath
+.settings/
+
+# OS
+.DS_Store
+*~
+
+# Project-specific scripts
+scripts/test-skip-known-failures.sh

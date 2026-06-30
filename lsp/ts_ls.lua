@@ -1,8 +1,6 @@
 local on_attach_remap = require("utils.lsp").on_attach_remap
 
-local vue_ts_plugin_path = vim.fn.expand(
-	"$MASON/packages/vue-language-server/node_modules/@vue/typescript-plugin"
-)
+local vue_ts_plugin_path = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/typescript-plugin")
 
 return {
 	init_options = {
