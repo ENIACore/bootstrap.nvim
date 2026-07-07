@@ -65,20 +65,32 @@ local config = {
 		-- nvim-dap (if using)
 		vim.keymap.set("n", "<leader>dtc", require("jdtls").test_class, opts)
 		vim.keymap.set("n", "<leader>dtm", require("jdtls").test_nearest_method, opts)
+
+		-- Print the JAR name the current buffer belongs to (or project name if a source file)
+		vim.keymap.set("n", "<leader>pn", function()
+			local bufname = vim.api.nvim_buf_get_name(bufnr)
+			if bufname:match("^jdt://") then
+				local decoded = bufname:gsub("%%5C", "/"):gsub("%%5c", "/")
+				local jar = decoded:match("/([^/]+%.jar)")
+				vim.notify(jar or "Could not parse JAR name from buffer URI", vim.log.levels.INFO)
+			else
+				vim.notify(vim.fn.fnamemodify(vim.fn.getcwd(), ":t"), vim.log.levels.INFO)
+			end
+		end, { buffer = bufnr, silent = true, desc = "Show JAR or project name for current buffer" })
 	end,
 
 	-- Here you can configure eclipse.jdt.ls specific settings, see https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request for a list of options
 	settings = {
-		format = {
-			enabled = true,
-			tabSize = 4,
-			settings = {
-				url = vim.fn.expand("~/.config/nvim/lint/java-formatter.xml"),
-				profile = "WSGC Conventions",
-			},
-		},
-		imports = { gradle = { enabled = true } },
 		java = {
+			format = {
+				enabled = true,
+				tabSize = 4,
+				settings = {
+					url = vim.fn.expand("~/.config/nvim/lint/java-formatter.xml"),
+					profile = "WSGC Conventions",
+				},
+			},
+			imports = { gradle = { enabled = true } },
 			configuration = {
 				-- Java runtime versions available - correct version used by debugger when running project and showing errors
 				runtimes = {
