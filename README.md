@@ -20,7 +20,7 @@
 
 # TODO
 
-- Implement automated `npm install @types/jest @types/node` and basic `tsconfig.json` on node projects if they don't already have it (or add warnign to user when doing `vim .` on project without
+- Implement automated `npm install -g @types/jest @types/node` and basic `tsconfig.json` on node projects if they don't already have it (or add warnign to user when doing `vim .` on project without
 - Add ranged formatting
 - Add multi page scratchpad for notes etc
 - Fix lua scratchpad and rename it to something else
