@@ -6,6 +6,7 @@ require("telescope").setup({
 		preview = {
 			treesitter = false,
 		},
+		path_display = { "filename_first" },
 	},
 })
 local builtin = require("telescope.builtin")
