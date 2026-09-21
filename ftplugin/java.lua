@@ -45,6 +45,51 @@ local config = {
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 
 	on_attach = function(client, bufnr)
+		vim.keymap.set("n", "<leader>jr", function()
+			local keys = {
+				"org.eclipse.jdt.ls.core.vm.location",
+				"org.eclipse.jdt.core.compiler.source",
+				"org.eclipse.jdt.core.compiler.compliance",
+				"org.eclipse.jdt.core.compiler.codegen.targetPlatform",
+			}
+
+			local res, err = client:request_sync("workspace/executeCommand", {
+				command = "java.project.getSettings",
+				arguments = { vim.uri_from_bufnr(bufnr), keys },
+			}, 2000, bufnr)
+
+			if not res or res.err or not res.result then
+				vim.notify(
+					"Could not get project settings: " .. vim.inspect(err or (res and res.err)),
+					vim.log.levels.WARN
+				)
+				return
+			end
+
+			local settings = res.result
+			local vm_path = settings["org.eclipse.jdt.ls.core.vm.location"]
+
+			-- Map the JDK path back to the runtime name from your config
+			local runtime_name = "unknown (not in configured runtimes)"
+			for _, rt in ipairs(client.config.settings.java.configuration.runtimes) do
+				if vm_path and vim.fn.resolve(rt.path) == vim.fn.resolve(vm_path) then
+					runtime_name = rt.name
+					break
+				end
+			end
+
+			vim.notify(
+				table.concat({
+					"Runtime:     " .. runtime_name,
+					"JDK path:    " .. tostring(vm_path),
+					"Source:      " .. tostring(settings["org.eclipse.jdt.core.compiler.source"]),
+					"Compliance:  " .. tostring(settings["org.eclipse.jdt.core.compiler.compliance"]),
+					"Target:      " .. tostring(settings["org.eclipse.jdt.core.compiler.codegen.targetPlatform"]),
+				}, "\n"),
+				vim.log.levels.INFO
+			)
+		end, { buffer = bufnr, silent = true, desc = "Show Java runtime for current buffer" })
+
 		on_attach_remap(client, bufnr)
 
 		-- Register the java DAP adapter and discover main classes
