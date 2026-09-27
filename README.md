@@ -29,6 +29,30 @@
 - Refactor and improve `scratchpad.lua`
 - Refactor and improve `node.lua`
 
+# Known Issues
+
+### `vue_ls` crashes on startup with "Client vue_ls quit with exit code 1"
+
+**Symptom:** Opening a `.vue` file fails to attach `vue_ls`, and `~/.local/state/nvim/lsp.log` shows:
+
+```
+TypeError: Cannot read properties of undefined (reading 'protocol')
+    at Object.getLanguageService (.../mason/packages/vue-language-server/node_modules/@vue/language-server/lib/server.js:40:86)
+```
+
+**Cause:** The Mason registry's `vue-language-server` package pins `typescript@^7.0.2` as a bundled dependency. `@vue/language-server` (Vue Language Tools / Volar) is built against the classic TypeScript API and expects `ts.server.protocol.CommandTypes` to exist. TypeScript 7 is Microsoft's new native/Go-based rewrite and no longer exposes that `ts.server` namespace, so `@vue/language-server` crashes immediately on startup. `lsp/vue_ls.lua` points `init_options.typescript.tsdk` at that same bundled (broken) `typescript` install, so there's no config fix on our end — it's a bad dependency pin in the upstream Mason package.
+
+**Fix:** Pin a compatible TypeScript 5.x inside the Mason package so `tsdk` resolves to a working install:
+
+```sh
+cd ~/.local/share/nvim/mason/packages/vue-language-server
+npm install typescript@5.9.3 --save-exact --no-save
+```
+
+Then restart Neovim (or run `:LspRestart` on a `.vue` buffer).
+
+**Note:** This lives inside Mason's install directory, so a future `:MasonInstall vue-language-server` / update re-pulls `typescript@^7.0.2` and will reintroduce the crash until the upstream mason-registry package fixes the pin. Rerun the command above if it recurs.
+
 # References
 
 - All lsp configs can be found at `https://github.com/neovim/nvim-lspconfig/tree/master/lsp`
