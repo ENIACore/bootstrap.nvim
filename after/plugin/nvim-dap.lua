@@ -23,6 +23,32 @@ vim.keymap.set("n", "<leader>dl", function()
 	dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
 end, { desc = "DAP: Log point" })
 vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "DAP: Continue" })
+vim.keymap.set("n", "<leader>da", function()
+	local host = vim.fn.input("Java debug host: ")
+	if host == "" then
+		vim.notify("Java debug attach cancelled: host is required", vim.log.levels.WARN)
+		return
+	end
+
+	local port_input = vim.fn.input("Java debug port: ")
+	if port_input == "" then
+		vim.notify("Java debug attach cancelled: port is required", vim.log.levels.WARN)
+		return
+	end
+	local port = tonumber(port_input)
+	if not port or port % 1 ~= 0 or port < 1 or port > 65535 then
+		vim.notify("Invalid Java debug port: " .. port_input, vim.log.levels.ERROR)
+		return
+	end
+
+	dap.run({
+		type = "java",
+		request = "attach",
+		name = "Java: Attach to " .. host .. ":" .. port,
+		hostName = host,
+		port = port,
+	})
+end, { desc = "DAP: Attach to Java host/port" })
 vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "DAP: Step into" })
 vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "DAP: Step over" })
 vim.keymap.set("n", "<leader>dO", dap.step_out, { desc = "DAP: Step out" })

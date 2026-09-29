@@ -58,6 +58,12 @@ CONTENTS                                                *kb-telescope-contents*
 
     NOTE: Requires `ripgrep` to be installed (`rg` on PATH).
 
+`<leader>pS`                                      *telescope-live-grep-ignore*
+    Prompts for file-name text to ignore, then starts live grep. Matching is
+    case-insensitive and excludes names containing the text. For example,
+    entering `test` ignores paths matching `**/*test*`. Press Enter without
+    text to search without adding an exclusion.
+
 ================================================================================
 4. INSIDE THE PICKER                                    *kb-telescope-picker*
 

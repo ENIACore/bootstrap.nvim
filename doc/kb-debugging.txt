@@ -13,6 +13,19 @@ CONTENTS                                                  *kb-debugging-contents
 ================================================================================
 1. JAVA / JDTLS                                             *kb-debugging-java*
 
+`<leader>da`                                             *dap-java-attach*
+    Attach the Java debugger to a running JVM. Enter its hostname or IP and
+    JDWP port when prompted. Set source breakpoints before attaching; the
+    debugger needs matching source files locally.
+
+    For a local Maven/Jetty project, start the JVM with JDWP enabled, e.g.:
+
+        MAVEN_OPTS='-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:5005' mvn jetty:run
+
+    Then use `<leader>da` and enter `127.0.0.1` and `5005`. Use `suspend=y`
+    instead of `suspend=n` if the JVM should wait for the debugger during
+    startup.
+
 `<leader>df`                                                    *dap-test-class*
     Runs all tests in the current Java class via jdtls. Use when you want to
     run the full test suite for the file you're editing.

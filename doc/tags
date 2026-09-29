@@ -16,6 +16,7 @@ dap-conditional-breakpoint	kb-debugging.txt	/*dap-conditional-breakpoint*
 dap-continue	kb-debugging.txt	/*dap-continue*
 dap-frames-float	kb-debugging.txt	/*dap-frames-float*
 dap-hover-value	kb-debugging.txt	/*dap-hover-value*
+dap-java-attach	kb-debugging.txt	/*dap-java-attach*
 dap-log-point	kb-debugging.txt	/*dap-log-point*
 dap-pause	kb-debugging.txt	/*dap-pause*
 dap-restart	kb-debugging.txt	/*dap-restart*
@@ -200,6 +201,7 @@ telescope-close	kb-telescope.txt	/*telescope-close*
 telescope-find-files	kb-telescope.txt	/*telescope-find-files*
 telescope-git-files	kb-telescope.txt	/*telescope-git-files*
 telescope-live-grep	kb-telescope.txt	/*telescope-live-grep*
+telescope-live-grep-ignore	kb-telescope.txt	/*telescope-live-grep-ignore*
 telescope-loc-list	kb-telescope.txt	/*telescope-loc-list*
 telescope-next-prev	kb-telescope.txt	/*telescope-next-prev*
 telescope-open	kb-telescope.txt	/*telescope-open*
