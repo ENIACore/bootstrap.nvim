@@ -31,6 +31,7 @@ dap-test-nearest-method	kb-debugging.txt	/*dap-test-nearest-method*
 dap-toggle-breakpoint	kb-debugging.txt	/*dap-toggle-breakpoint*
 dap-toggle-repl	kb-debugging.txt	/*dap-toggle-repl*
 dap-toggle-ui	kb-debugging.txt	/*dap-toggle-ui*
+dap-toggle-wide-ui	kb-debugging.txt	/*dap-toggle-wide-ui*
 fugitive-blame	kb-fugitive.txt	/*fugitive-blame*
 fugitive-branch	kb-fugitive.txt	/*fugitive-branch*
 fugitive-checkout	kb-fugitive.txt	/*fugitive-checkout*
