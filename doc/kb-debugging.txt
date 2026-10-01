@@ -107,9 +107,9 @@ CONTENTS                                                  *kb-debugging-contents
 
 `<leader>dU`                                           *dap-toggle-wide-ui*
     Toggle a wide custom layout: the debugger panels fill 60% of the width
-    on the left; the remaining column shows Console above the source window
-    and REPL below it. Press again to close it and restore the normal layout
-    configuration used by `<leader>du`. Its statusline is hidden while open.
+    on the left; the remaining column is reserved for the source window.
+    Press again to close it and restore the normal layout configuration used
+    by `<leader>du`. Its statusline is hidden while open.
 
 `<leader>dq`                                                 *dap-close-ui*
     Close all DAP UI windows without ending the session. Use when you want

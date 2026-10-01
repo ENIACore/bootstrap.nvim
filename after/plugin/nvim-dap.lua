@@ -30,7 +30,7 @@ local default_dapui_layouts = {
 		position = "bottom",
 	},
 }
-local custom_dapui_layout_open = false
+local dapui_layout = 0
 local custom_dapui_windows = {}
 local previous_laststatus
 
@@ -44,7 +44,7 @@ local function dapui_layout_is_open()
 end
 
 local function sync_dapui_statusline()
-	if custom_dapui_layout_open or dapui_layout_is_open() then
+	if dapui_layout ~= 0 or dapui_layout_is_open() then
 		if previous_laststatus == nil then
 			previous_laststatus = vim.o.laststatus
 		end
@@ -64,14 +64,18 @@ local function close_custom_dapui_layout()
 	custom_dapui_windows = {}
 	dapui.close()
 	dapui.setup({ layouts = vim.deepcopy(default_dapui_layouts) })
-	custom_dapui_layout_open = false
+	dapui_layout = 0
 	sync_dapui_statusline()
 end
 
 local function toggle_custom_dapui_layout()
-	if custom_dapui_layout_open then
+	if dapui_layout == 2 then
 		close_custom_dapui_layout()
 		return
+	end
+	if dapui_layout == 1 then
+		dapui.close()
+		dapui_layout = 0
 	end
 
 	local code_win = vim.api.nvim_get_current_win()
@@ -115,21 +119,8 @@ local function toggle_custom_dapui_layout()
 	vim.api.nvim_set_current_win(code_win)
 	vim.api.nvim_win_set_buf(code_win, source_buf)
 
-	vim.cmd("aboveleft split")
-	local console_win = vim.api.nvim_get_current_win()
-	vim.api.nvim_win_set_buf(console_win, dapui.elements.console.buffer())
-
-	vim.api.nvim_set_current_win(code_win)
-	vim.cmd("belowright split")
-	local repl_win = vim.api.nvim_get_current_win()
-	vim.api.nvim_win_set_buf(repl_win, dapui.elements.repl.buffer())
-
-	local pane_height = math.max(5, math.floor(vim.api.nvim_win_get_height(code_win) * 0.2))
-	vim.api.nvim_win_set_height(console_win, pane_height)
-	vim.api.nvim_win_set_height(repl_win, pane_height)
-
-	custom_dapui_windows = { console = console_win, repl = repl_win }
-	custom_dapui_layout_open = true
+	custom_dapui_windows = {}
+	dapui_layout = 2
 	vim.api.nvim_set_current_win(code_win)
 	sync_dapui_statusline()
 end
@@ -182,15 +173,26 @@ vim.keymap.set("n", "<leader>dx", dap.clear_breakpoints, { desc = "DAP: Clear al
 
 -- ── UI ─────────────────────────────────────────────────────────────────────
 vim.keymap.set("n", "<leader>du", function()
-	dapui.toggle()
+	if dapui_layout == 2 then
+		close_custom_dapui_layout()
+		return
+	end
+	if dapui_layout == 1 then
+		dapui.close()
+		dapui_layout = 0
+	else
+		dapui.open()
+		dapui_layout = 1
+	end
 	sync_dapui_statusline()
 end, { desc = "DAP: Toggle UI" })
 vim.keymap.set("n", "<leader>dU", toggle_custom_dapui_layout, { desc = "DAP: Toggle custom wide layout" })
 vim.keymap.set("n", "<leader>dq", function()
-	if custom_dapui_layout_open then
+	if dapui_layout == 2 then
 		close_custom_dapui_layout()
 	else
 		dapui.close()
+		dapui_layout = 0
 		sync_dapui_statusline()
 	end
 end, { desc = "DAP: Close all windows" })
