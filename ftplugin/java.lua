@@ -85,6 +85,7 @@ local config = {
 					"Source:      " .. tostring(settings["org.eclipse.jdt.core.compiler.source"]),
 					"Compliance:  " .. tostring(settings["org.eclipse.jdt.core.compiler.compliance"]),
 					"Target:      " .. tostring(settings["org.eclipse.jdt.core.compiler.codegen.targetPlatform"]),
+					"Workspace:   " .. workspace_dir,
 				}, "\n"),
 				vim.log.levels.INFO
 			)
