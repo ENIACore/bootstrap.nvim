@@ -18,6 +18,7 @@ local servers = {
 	"json-lsp",
 	"vue-language-server",
 	"jdtls", -- No lsp/* file (so no lsp name), configured in ftplugin/java.lua
+	"lemminx",
 }
 
 local lsp_names = {
@@ -34,6 +35,7 @@ local lsp_names = {
 	"marksman",
 	"jsonls",
 	"vue_ls",
+	"lemminx",
 }
 
 registry:install_pkg_list(servers)
