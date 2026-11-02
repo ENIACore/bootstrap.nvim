@@ -161,8 +161,8 @@ local config = {
 						path = "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home",
 					},
 					{
-						name = "JavaSE-26",
-						path = "/opt/homebrew/Cellar/openjdk/26.0.1/libexec/openjdk.jdk/Contents/Home",
+						name = "JavaSE-25",
+						path = "/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home",
 					},
 				},
 			},
