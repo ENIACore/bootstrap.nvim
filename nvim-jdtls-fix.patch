@@ -1,0 +1,49 @@
+diff --git a/lua/jdtls.lua b/lua/jdtls.lua
+index 748b75b..e6e4c5a 100644
+--- a/lua/jdtls.lua
++++ b/lua/jdtls.lua
+@@ -462,6 +462,25 @@ end
+ ---@param cmd_name string
+ ---@param code_action_params table
+ local function change_signature_prompt(bufnr, signature, cmd_name, code_action_params)
++  if type(signature) ~= "table" then
++    vim.notify("JDT-LS returned no change-signature information", vim.log.levels.ERROR)
++    return
++  end
++  if type(signature.errorMessage) == "string" and signature.errorMessage ~= "" then
++    vim.notify("Cannot change signature: " .. signature.errorMessage, vim.log.levels.ERROR)
++    return
++  end
++  if type(signature.methodIdentifier) ~= "string"
++    or type(signature.modifier) ~= "string"
++    or type(signature.returnType) ~= "string"
++    or type(signature.methodName) ~= "string"
++    or type(signature.parameters) ~= "table"
++    or type(signature.exceptions) ~= "table"
++  then
++    vim.notify("JDT-LS returned incomplete change-signature information", vim.log.levels.ERROR)
++    return
++  end
++
+   local edit_buf = api.nvim_create_buf(false, true)
+   api.nvim_create_autocmd("BufUnload", {
+     buffer = edit_buf,
+@@ -488,7 +507,7 @@ local function change_signature_prompt(bufnr, signature, cmd_name, code_action_p
+               type = matches[3],
+             })
+           else
+-            matches = { line:match("%- (%w+) ([^ ]+) ?(.*)") }
++            matches = { line:match("%- ([^ ]+) ([^ ]+) ?(.*)") }
+             if next(matches) then
+               table.insert(parameters, {
+                 type = matches[1],
+@@ -606,7 +625,8 @@ local function change_signature(bufnr, command, code_action_params)
+   end
+   local function on_signature(err, sig)
+     if err then
+-      error(vim.inspect(err))
++      vim.notify("Could not retrieve change-signature information: " .. vim.inspect(err), vim.log.levels.ERROR)
++      return
+     end
+     change_signature_prompt(bufnr, sig, cmd_name, code_action_params)
+   end
