@@ -136,6 +136,8 @@ end, { desc = "DAP: Log point" })
 vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "DAP: Continue" })
 vim.keymap.set("n", "<leader>da", function()
 	local host = vim.fn.input("Java debug host: ", "127.0.0.1")
+	-- JDWP needs a bare hostname/IP: strip whitespace, URL scheme, port and path
+	host = vim.trim(host):gsub("^%a[%w+.-]*://", ""):gsub("[/:].*$", "")
 	if host == "" then
 		vim.notify("Java debug attach cancelled: host is required", vim.log.levels.WARN)
 		return
